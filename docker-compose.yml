@@ -1,0 +1,15 @@
+services:
+  viva:
+    build: .
+    restart: unless-stopped
+    environment:            # voir docs/DEPLOY.md pour le détail
+      LOBBY_TTL_MIN: 30
+      IDLE_TTL_MIN: 120
+      EMPTY_TTL_MIN: 10
+      DONE_TTL_MIN: 15
+      AWAY_TURN_S: 90
+      MAX_ROOMS: 300
+    ports: ["3000:3000"]
+
+volumes:
+  viva-data:

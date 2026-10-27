@@ -1,0 +1,65 @@
+/* BASE — styles globaux sur éléments HTML sémantiques et attributs data-*. Pas de classes. */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+body {
+  margin: 0; min-height: 100dvh; background: var(--papier); color: var(--encre);
+  font: 400 1rem/1.45 var(--f-corps);
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+}
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; text-transform: uppercase; line-height: .95; margin: 0 0 var(--s3); letter-spacing: -.01em; }
+h1 { font-size: clamp(2.6rem, 9vw, 5.5rem); }
+h2 { font-size: clamp(1.3rem, 3vw, 1.9rem); }
+h3 { font-size: 1.05rem; }
+p { margin: 0 0 var(--s3); max-width: 62ch; }
+small, label > span, legend, th { font: 700 .72rem/1.3 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; }
+a { color: inherit; text-decoration-thickness: var(--trait); text-underline-offset: 3px; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+:focus-visible { outline: var(--trait) solid var(--cobalt); outline-offset: 3px; }
+[hidden] { display: none !important; }
+
+/* Actions : défaut = secondaire. Variantes via data-variant. */
+button {
+  font: 700 .95rem var(--f-corps); color: var(--encre); background: var(--craie);
+  border: var(--bord); padding: var(--s3) var(--s4); box-shadow: var(--relief); cursor: pointer;
+  transition: transform .08s, box-shadow .08s; border-radius: 0;
+}
+button:hover:not(:disabled) { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--encre); }
+button:active:not(:disabled) { transform: translate(4px, 4px); box-shadow: var(--appui); }
+button:disabled { background: repeating-linear-gradient(135deg, var(--papier) 0 6px, #e4dcc4 6px 12px); color: #7a7060; box-shadow: none; cursor: not-allowed; border-color: #7a7060; }
+button[data-variant="primary"] { background: var(--soufre); }
+button[data-variant="ink"]     { background: var(--encre); color: var(--craie); box-shadow: 4px 4px 0 var(--soufre); }
+button[data-variant="danger"]  { background: var(--vermillon); color: var(--craie); }
+button[data-variant="ghost"]   { background: none; border-color: transparent; box-shadow: none; text-decoration: underline; text-decoration-thickness: 2px; padding-inline: var(--s2); }
+button[data-size="s"] { padding: var(--s1) var(--s3); font-size: .8rem; box-shadow: 3px 3px 0 var(--encre); }
+
+/* Formulaires */
+label { display: grid; gap: var(--s1); margin-bottom: var(--s4); }
+input { font: 700 1rem var(--f-corps); padding: var(--s3); border: var(--bord); background: var(--craie); border-radius: 0; width: 100%; }
+input:focus-visible { box-shadow: var(--relief); outline-offset: 0; }
+input[aria-invalid="true"] { border-color: var(--vermillon); box-shadow: 4px 4px 0 var(--vermillon); }
+label > small { color: #5c5346; text-transform: none; letter-spacing: 0; font-weight: 400; }
+label > small[role="alert"] { color: var(--vermillon); font-weight: 700; }
+
+/* Signaux */
+mark { display: inline-block; padding: 2px var(--s2); border: 2px solid var(--encre); font: 700 .7rem var(--f-mono); text-transform: uppercase; background: var(--soufre); color: var(--encre); }
+mark[data-tone="danger"] { background: var(--vermillon); color: var(--craie); }
+mark[data-tone="info"]   { background: var(--cobalt); color: var(--craie); }
+mark[data-tone="succes"] { background: var(--pistache); }
+mark[data-tone="rose"]   { background: var(--rose); }
+mark[data-tone="encre"]  { background: var(--encre); color: var(--craie); }
+
+/* Barre de PV */
+progress { appearance: none; -webkit-appearance: none; width: 100%; height: 22px; border: var(--bord); background: var(--craie); display: block; border-radius: 0; }
+progress::-webkit-progress-bar { background: var(--craie); }
+progress::-webkit-progress-value { background: var(--vermillon); }
+progress::-moz-progress-bar { background: var(--vermillon); }
+
+/* Panneaux : tout élément marqué data-panel */
+[data-panel] { background: var(--craie); border: var(--bord); box-shadow: var(--relief); padding: var(--s4); }
+[data-panel][data-tone="soufre"] { background: var(--soufre); }
+[data-panel][data-tone="encre"]  { background: var(--encre); color: var(--craie); box-shadow: 4px 4px 0 var(--soufre); }
+
+dialog { border: var(--bord); box-shadow: var(--relief-haut); background: var(--craie); color: var(--encre); padding: var(--s5); max-width: min(640px, 92vw); max-height: 86dvh; overflow: auto; }
+dialog::backdrop { background: color-mix(in srgb, var(--encre) 70%, transparent); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }

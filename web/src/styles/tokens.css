@@ -1,0 +1,40 @@
+/*
+ * TOKENS — source de vérité du design system « Brut. Lisible. Collectif. »
+ * Aucune couleur, aucun espacement ni aucune ombre ne doit être écrit en dur ailleurs.
+ * ⚠ Les valeurs hexadécimales ont été estimées depuis les maquettes (basse résolution) :
+ *    corrigez-les ici, tout le site suit.
+ */
+:root {
+  color-scheme: light;
+
+  /* Couleurs du royaume */
+  --encre: #15120f;     /* texte, traits, ombres */
+  --papier: #f5eedb;    /* fond de page */
+  --craie: #fffdf5;     /* surfaces, cartes */
+  --soufre: #ffd93b;    /* action principale */
+  --vermillon: #ef4b2e; /* danger, cœur, riposte */
+  --cobalt: #2f5bea;    /* information, carreau */
+  --pistache: #a5d86a;  /* succès, trèfle */
+  --rose: #f5a8c8;      /* ennemi, cœur */
+
+  /* Typographie */
+  --f-display: "Archivo Black", Impact, sans-serif;
+  --f-corps: "Archivo", system-ui, sans-serif;
+  --f-mono: "Space Mono", ui-monospace, monospace;
+
+  /* Rythme (échelle 4) */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px; --s8: 72px;
+
+  /* Relief : traits épais, ombres dures sans flou */
+  --trait: 3px;
+  --bord: var(--trait) solid var(--encre);
+  --relief: 4px 4px 0 var(--encre);
+  --relief-haut: 8px 8px 0 var(--encre);
+  --appui: 0 0 0 var(--encre);
+}
+
+/* Couleur d’une couleur de carte (théming par attribut, sans classe) */
+[data-suit="H"] { --suit: var(--vermillon); --tint: var(--rose); }
+[data-suit="D"] { --suit: var(--cobalt);    --tint: #bccdff; }
+[data-suit="C"] { --suit: var(--encre);     --tint: var(--pistache); }
+[data-suit="S"] { --suit: var(--encre);     --tint: var(--soufre); }
